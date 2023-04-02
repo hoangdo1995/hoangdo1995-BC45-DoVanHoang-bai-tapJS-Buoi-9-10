@@ -1,0 +1,161 @@
+/* Color Theme Swatches in Hex */
+.color-primary-hex {
+    color: #A87558;
+}
+
+.color-light-hex {
+    color: #FFD1B8;
+}
+
+.color-danger-hex {
+    color: #F5B998;
+}
+
+.color-secondary-hex {
+    color: #4DA8A6;
+}
+
+.color-infor-hex {
+    color: #98F5F3;
+}
+
+/* Color Theme Swatches in RGBA */
+.color-primary {
+    color: secondarygba(168, 117, 88, 1);
+}
+
+.color-light {
+    color: rgba(255, 209, 184, 1);
+}
+
+.color-danger {
+    color: rgba(245, 185, 152, 1);
+}
+
+.color-secondary {
+    color: rgba(77, 168, 166, 1);
+}
+
+.color-infor {
+    color: rgba(152, 245, 243, 1);
+}
+
+/* Color Theme Swatches in HSLA */
+.color-primary-hsla {
+    color: hsla(21, 31, 50, 1);
+}
+
+.color-light-hsla {
+    color: hsla(21, 100, 86, 1);
+}
+
+.color-danger-hsla {
+    color: hsla(21, 82, 77, 1);
+}
+
+.color-secondary-hsla {
+    color: hsla(178, 37, 48, 1);
+}
+
+.color-infor-hsla {
+    color: hsla(178, 82, 77, 1);
+}
+
+html {
+    font-size: 17px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    /* font */
+    font-family: 'Roboto', sans-serif;
+
+    max-width: 1200px;
+    margin: 20px auto;
+
+}
+
+/* global */
+
+/* HEADER */
+.navbar {
+    background-color: #f5b9988a;
+    padding: 30px;
+    background-image: url(../image/15002.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.navbar-brand {
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 0 10px 10px rgba(152, 245, 243, 1);
+    ;
+}
+
+.navbar .logo {
+    font-size: 60px;
+    font-weight: bolder;
+    margin-bottom: 10px;
+    line-height: 50px;
+    color: #A87558;
+    font-family: 'Alkatra', cursive;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar .descript {
+    font-family: 'Dancing Script', cursive;
+    font-weight: 700;
+    font-size: 30px;
+    margin-top: 0px;
+    padding: 0;
+}
+
+/* menu bar */
+.nav {
+    font-size: 1.2rem;
+    margin-top: 10px;
+    background-color: #FFD1B8;
+    border-radius: 20px;
+}
+
+.nav button {
+    text-align: left;
+    width: 250px;
+    padding: 20px;
+    color:#4DA8A6 !important;
+
+}
+.nav button.active{
+    background-color: #A87558 !important;
+    color:white !important;
+    box-shadow: 0 0 10px 5px #98F5F3;
+    font-size: 1.3rem;
+    font-weight: 800;
+}
+
+.nav button i {
+    margin-right: 20px;
+}
+
+/* content */
+.tab-content {
+    
+    width: 100%;
+    background-color:#f5b9983b;
+    min-height: 500px;
+    margin-top: 10px;
+    background-image: url(../image/Profiling-amico.png);
+    background-size: auto 80%;
+    background-repeat: no-repeat;
+    background-position: bottom right;
+    
+}
