@@ -21,7 +21,7 @@
 
 /* Color Theme Swatches in RGBA */
 .color-primary {
-    color: secondarygba(168, 117, 88, 1);
+    color: rgb(168, 117, 88, 1);
 }
 
 .color-light {
@@ -83,6 +83,27 @@ body{
 
 /* global */
 
+.btnFunction{
+    color:#4DA8A6;
+    margin: 10px 0;
+    padding: 10px 20px;
+    border: 1px solid #98F5F3;
+    font-weight: 500;
+    border-radius: 10px;
+    font-size: 20px;
+    background-color: #F5B998;
+    transition: all .5s;
+}
+.btnFunction:hover{
+    box-shadow: 0 0 10px 10px #98F5F3;
+    color: white;
+}
+
+.table-container{
+    width: 100%;
+    overflow: scroll;
+}
+
 /* HEADER */
 .navbar {
     background-color: #f5b9988a;
@@ -133,6 +154,7 @@ body{
     width: 250px;
     padding: 20px;
     color:#4DA8A6 !important;
+    transition: all .5s;
 
 }
 .nav button.active{
@@ -146,6 +168,12 @@ body{
 .nav button i {
     margin-right: 20px;
 }
+
+/* //show MENU */
+#showMenu button{
+    /* display: none; */
+}
+
 
 /* content */
 .tab-content {
@@ -195,4 +223,47 @@ body{
 .employee-box .employee-detail .input:focus{
     box-shadow: 0 0 20px 0px #98F5F3;
     outline: none;
+}
+
+@media screen and (max-width: 786px) {
+    .menu-title{
+        display: none;
+    }
+    .nav-link{
+        max-width: 70px;
+    }
+    .nav button i{
+        margin-right: 0px;
+    }
+    #tbInput .employee-box{
+        flex-direction: column;
+    }
+    .employee-details{
+        width: 100% !important;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    body{
+        
+    }
+    #v-pills-tab{
+        display: none;
+    }
+
+    #tbInput .employee-box{
+        flex-direction: column;
+    }
+    .employee-details{
+        width: 100% !important;
+    }
+    #showMenu button{
+        display: block;
+    }
+    .tab-content {
+    
+        width: 100%;
+        background-image: none;
+        
+    }
 }

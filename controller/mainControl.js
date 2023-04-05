@@ -157,7 +157,7 @@ function renderNhanVienToUser(arr,target){
         `;
     }
 
-    document.querySelector('#tableNhanVienSearch').innerHTML = strRender;
+    document.querySelector(target).innerHTML = strRender;
 }
 
 function saveStorage() {
@@ -253,13 +253,29 @@ function goToAddEmployeePage(){
     tabAdd.classList.add('show');
 }
 
+function goToHome(){
+    var listNavLink = document.querySelectorAll('.nav-link');
+    for (let i = 0; i < listNavLink.length; i++) {
+        listNavLink[i].classList.remove('active');
+    }
+    document.querySelector('#v-pills-home-tab').classList.add('active');
+
+    var listTabPane = document.querySelectorAll('.tab-pane');
+    for (let i = 0; i < listTabPane.length; i++) {
+        listTabPane[i].classList.remove('active');
+        listTabPane[i].classList.remove('show');
+    }
+    var tabAdd = document.querySelector('#v-pills-home');
+    tabAdd.classList.add('active');
+    tabAdd.classList.add('show');
+}
+
 function goToManagerPage(){
     var listNavLink = document.querySelectorAll('.nav-link');
     for (let i = 0; i < listNavLink.length; i++) {
         listNavLink[i].classList.remove('active');
     }
     document.querySelector('#v-pills-add-employee-tab').classList.add('active');
-
 
     var listTabPane = document.querySelectorAll('.tab-pane');
     for (let i = 0; i < listTabPane.length; i++) {
@@ -269,6 +285,29 @@ function goToManagerPage(){
     var tabAdd = document.querySelector('#v-pills-manager');
     tabAdd.classList.add('active');
     tabAdd.classList.add('show');
+}
+
+function goToStatisticPage(event){
+    var listNavLink = document.querySelectorAll('.nav-link');
+    for (let i = 0; i < listNavLink.length; i++) {
+        listNavLink[i].classList.remove('active');
+    }
+    document.querySelector('#v-pills-statistic-tab').classList.add('active');
+
+
+    var listTabPane = document.querySelectorAll('.tab-pane');
+    for (let i = 0; i < listTabPane.length; i++) {
+        listTabPane[i].classList.remove('active');
+        listTabPane[i].classList.remove('show');
+    }
+    var tabAdd = document.querySelector('#v-pills-statistic');
+    tabAdd.classList.add('active');
+    tabAdd.classList.add('show');
+
+    if(event.target.id === 'searchBtn'){
+        document.querySelector('#searchBox').focus();
+    }
+    
 }
 
 function getNhanVienByAccount(account){
@@ -344,5 +383,37 @@ function getEmployeesByRank(arr,rank){
         }
     }
     return arrRank;
+}
+
+function searchNhanVienByName(name){
+    event.preventDefault();
+    getDataStorage();
+    var arrNew = [];
+
+    for (let i = 0; i < arrNhanVien.length; i++) {
+        let nvNew = new nhanVien();
+        nvNew = Object.assign(nvNew,arrNhanVien[i]);
+        nvNew.alias = ChangeToSlug(nvNew.name);
+        arrNew.push(nvNew);
+    }
+    
+    var arrRessult = [];
+    for (let i = 0; i < arrNew.length; i++) {
+        if(arrNew[i].alias.search(ChangeToSlug(name.trim()))!==-1){
+            arrRessult.push(arrNew[i]);
+        }
+    }
+    console.log(arrRessult);
+    renderNhanVienToUser(arrRessult,'#tableSearch');
+}
+
+function showMenu(){
+    var menu = document.querySelector('#v-pills-tab');
+    if(menu.style.display !=='block'){
+        menu.style.display = 'block';
+    }
+    else{
+        menu.style.display = 'none'
+    }
 }
 

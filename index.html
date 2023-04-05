@@ -33,17 +33,18 @@
                 <p class="logo text-center">BS45</p>
                 <p class="descript color-secondary text-center">Quản lý nhân viên</p>
             </a>
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
+
         </div>
     </nav>
+    <!-- SHOW MENU -->
+    <div id="showMenu">
+        <button class="showMenuBtn btn btn-secondary my-2 p-2 fs-5" onclick="showMenu()">Menu</button>
+    </div>
     <div class="d-flex align-items-start" id="body-content">
         <!-- Menu bar -->
         <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
             <button class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home"
-                type="button" role="tab" aria-controls="v-pills-home" aria-selected="true"><i
+                type="button" role="tab" aria-controls="v-pills-home" aria-selected="true" onclick="goToHome()"><i
                     class="fa fa-home"></i><span class="menu-title">Home</span></button>
             <button class="nav-link" id="v-pills-manager-tab" data-bs-toggle="pill" data-bs-target="#v-pills-manager"
                 type="button" role="tab" aria-controls="v-pills-manager" aria-selected="false"><i
@@ -56,38 +57,72 @@
                 data-bs-target="#v-pills-statistic" type="button" role="tab" aria-controls="v-pills-statistic"
                 aria-selected="false"><i class="fa fa-clipboard"></i><span class="menu-title">Thống kê</span></button>
         </div>
-
+        
         <!-- content -->
         <div class="tab-content" id="v-pills-tabContent">
             <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab"
                 tabindex="0">
-                
+                <div class="home color-secondary">
+                    <div class="title fs-1 text-center color-primary text-uppercase fw-bolder">
+                        Chương trình quản lý nhân viên
+                    </div>
+                    <div class="function text-center">
+                        <h3>Chọn nghiệp vụ bạn muốn thực hiện</h3>
+                        <button class="btnFunction" onclick="goToAddEmployeePage()">Thêm nhân viên mới</button>
+                        <button class="btnFunction" onclick="goToManagerPage()">Chỉnh sửa nhân viên</button>
+                        <button class="btnFunction" onclick="goToStatisticPage()">Xem thống kê nhân viên</button>
+                        <div class="d-flex justify-content-center my-3" role="search">
+                            <div class="content-search w-50">
+                                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
+                                    id="searchBox" oninput="searchNhanVienByName(this.value)">
+                                <button class="btn btn-outline-success mt-2" type="submit"
+                                    onclick="searchNhanVienByName(document.querySelector('#searchBox').value)">Search</button>
+                            </div>
+                        </div>
+                        <div id="outputSearch"></div>
+                        <table class="table table-bordered table-hover myTable">
+                            <thead class="color-secondary">
+                                <tr>
+                                    <th style="min-width: 100px;">Tài khoản</th>
+                                    <th style="min-width: 100px;">Họ và tên</th>
+                                    <th style="min-width: 100px;">Email</th>
+                                    <th style="min-width: 100px;">Ngày làm</th>
+                                    <th style="min-width: 100px;">Chức vụ</th>
+                                    <th style="min-width: 100px;">Tổng lương</th>
+                                    <th style="min-width: 100px;">Xếp loại</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tableSearch">
+    
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
             <!-- panel quản lý nhân viên -->
             <div class="tab-pane fade" id="v-pills-manager" role="tabpanel" aria-labelledby="v-pills-manager-tab"
                 tabindex="0">
                 <div class="managerEmployee">
-                    <table class="table table-bordered table-hover myTable">
-                        <thead class="color-secondary">
-                            <tr>
-                                <th class="nowrap">
-                                    <span class="mr-1">Tài khoản</span>
-                                    <i class="fa fa-arrow-up" id="SapXepTang"></i>
-                                    <i class="fa fa-arrow-down" id="SapXepGiam"></i>
-                                </th>
-                                <th>Họ và tên</th>
-                                <th>Email</th>
-                                <th>Ngày làm</th>
-                                <th>Chức vụ</th>									
-                                <th>Tổng lương</th>
-                                <th>Xếp loại</th>
-                                <th><em class="fa fa-cog"></em></th>
-                            </tr>
-                        </thead>
-                        <tbody id="tableDanhSach">
-
-                        </tbody>
-                    </table>
+                    <h3 class="color-secondary text-center fs-1">Quản lý danh sách nhân viên</h3>
+                    <div class="table-container">
+                        <table class="table table-bordered table-hover myTable">
+                            <thead class="color-secondary">
+                                <tr>
+                                    <th style="min-width: 100px;">Tài khoản</th>
+                                    <th style="min-width: 100px;">Họ và tên</th>
+                                    <th style="min-width: 100px;">Email</th>
+                                    <th style="min-width: 100px;">Ngày làm</th>
+                                    <th style="min-width: 100px;">Chức vụ</th>
+                                    <th style="min-width: 100px;">Tổng lương</th>
+                                    <th style="min-width: 100px;">Xếp loại</th>
+                                    <th style="min-width: 100px;"><em class="fa fa-cog"></em></th>
+                                </tr>
+                            </thead>
+                            <tbody id="tableDanhSach">
+    
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
             <!-- panel nhập nhân viên -->
@@ -111,40 +146,37 @@
                                     </div>
                                     <div class="employee-detail">
                                         <label for="name">Họ và tên</label>
-                                        <input type="text" id="name" class="input"
-                                            placeholder="Nhập vào tên tài khoản">
-                                            <p class="color-danger" id="error-require-name"></p>
-                                            <p class="color-danger" id="error-valid-name"></p>
+                                        <input type="text" id="name" class="input" placeholder="Nhập vào tên tài khoản">
+                                        <p class="color-danger" id="error-require-name"></p>
+                                        <p class="color-danger" id="error-valid-name"></p>
                                     </div>
                                     <div class="employee-detail">
                                         <label for="email">Email</label>
-                                        <input type="text" id="email" class="input"
-                                            placeholder="Nhập vào email">
-                                            <p class="color-danger" id="error-require-email"></p>
-                                            <p class="color-danger" id="error-valid-email"></p>
+                                        <input type="text" id="email" class="input" placeholder="Nhập vào email">
+                                        <p class="color-danger" id="error-require-email"></p>
+                                        <p class="color-danger" id="error-valid-email"></p>
                                     </div>
                                     <div class="employee-detail">
                                         <label for="password">Mật khẩu</label>
-                                        <input type="text" id="password" class="input"
-                                            placeholder="Nhập vào mật khẩu">
-                                            <p class="color-danger" id="error-require-password"></p>
-                                            <p class="color-danger" id="error-valid-password"></p>
+                                        <input type="text" id="password" class="input" placeholder="Nhập vào mật khẩu">
+                                        <p class="color-danger" id="error-require-password"></p>
+                                        <p class="color-danger" id="error-valid-password"></p>
                                     </div>
                                 </div>
                                 <div class="employee-details">
                                     <div class="employee-detail">
                                         <label for="day-work">Ngày làm</label>
-                                        <input type="date" id="day-work" class="input"
-                                            placeholder="Nhập vào ngày làm" min="01-01-2018">
-                                            <p class="color-danger" id="error-require-day-work"></p>
-                                            <p id="error-valid-day-work"></p>
+                                        <input type="date" id="day-work" class="input" placeholder="Nhập vào ngày làm"
+                                            min="01-01-2018">
+                                        <p class="color-danger" id="error-require-day-work"></p>
+                                        <p id="error-valid-day-work"></p>
                                     </div>
                                     <div class="employee-detail">
                                         <label for="base-salary">Lương cơ bản</label>
                                         <input type="number" id="base-salary" class="input"
                                             placeholder="Nhập vào lương cơ bản" min="1000000" max="20000000">
-                                            <p class="color-danger" id="error-require-base-salary"></p>
-                                            <p class="color-danger" id="error-valid-base-salary"></p>
+                                        <p class="color-danger" id="error-require-base-salary"></p>
+                                        <p class="color-danger" id="error-valid-base-salary"></p>
                                     </div>
                                     <div class="employee-detail">
                                         <label for="position">Chức vụ</label>
@@ -160,15 +192,17 @@
                                         <label for="times-month">Giờ làm trong tháng</label>
                                         <input type="number" id="times-month" class="input"
                                             placeholder="Giờ làm trong tháng" min="80" max="200">
-                                            <p class="color-danger" id="error-require-times-month"></p>
-                                            <p class="color-danger" id="error-valid-times-month"></p>
+                                        <p class="color-danger" id="error-require-times-month"></p>
+                                        <p class="color-danger" id="error-valid-times-month"></p>
                                     </div>
 
                                 </div>
                             </div>
                             <div class="d-flex justify-content-center">
-                                <button class="btn btn-success p-2" type="submit" id="btnAddNhanVien">Thêm nhân viên</button>
-                                <button class="btn btn-warning ms-3" disabled id="btnEditEmployee">Cập nhật nhân viên</button>
+                                <button class="btn btn-success p-2" type="submit" id="btnAddNhanVien">Thêm nhân
+                                    viên</button>
+                                <button class="btn btn-warning ms-3" disabled id="btnEditEmployee">Cập nhật nhân
+                                    viên</button>
                             </div>
                         </form>
                     </div>
@@ -177,47 +211,45 @@
             <div class="tab-pane fade" id="v-pills-statistic" role="tabpanel" aria-labelledby="v-pills-statistic-tab"
                 tabindex="0">
                 <div class="statistic">
-                    <p>Lọc ra nhân viên theo xếp loại:</p>
-                <select name="positionSearch" id="positionSearch">
-                    <option value="0">Chọn loại nhân viên</option>
-                    <option value="1">Nhân viên</option>
-                    <option value="2">Giám đốc</option>
-                    <option value="3">Trưởng phòng</option>
-                </select>
-                <select name="rankSearch" id="rankSearch">
-                    <option value="0">Chọn xếp loại</option>
-                    <option value="1">Xuất sắc</option>
-                    <option value="2">Giỏi</option>
-                    <option value="3">Khá</option>
-                    <option value="4">Trung bình</option>
-                </select>
+                    <h3 class="fs-2 color-secondary text-uppercase text-center mb-4">Lọc ra nhân viên theo xếp loại và chức vụ:</h3>
+                    <select name="positionSearch" id="positionSearch" class="fw-bold color-secondary rounded-2 p-2">
+                        <option value="0">Chọn loại nhân viên</option>
+                        <option value="1">Nhân viên</option>
+                        <option value="2">Giám đốc</option>
+                        <option value="3">Trưởng phòng</option>
+                    </select>
+                    <select name="rankSearch" id="rankSearch" class='fw-bold color-secondary rounded-2 p-2 mb-3'>
+                        <option value="0">Chọn xếp loại</option>
+                        <option value="1">Xuất sắc</option>
+                        <option value="2">Giỏi</option>
+                        <option value="3">Khá</option>
+                        <option value="4">Trung bình</option>
+                    </select>
 
-                <table class="table table-bordered table-hover myTable">
-                    <thead class="color-secondary">
-                        <tr>
-                            <th class="nowrap">
-                                <span class="mr-1">Tài khoản</span>
-                                <i class="fa fa-arrow-up" id="SapXepTang"></i>
-                                <i class="fa fa-arrow-down" id="SapXepGiam"></i>
-                            </th>
-                            <th>Họ và tên</th>
-                            <th>Email</th>
-                            <th>Ngày làm</th>
-                            <th>Chức vụ</th>									
-                            <th>Tổng lương</th>
-                            <th>Xếp loại</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tableNhanVienSearch">
-
-                    </tbody>
-                </table>
+                    <div class="table-container">
+                        <table class="table table-bordered table-hover myTable">
+                            <thead class="color-secondary">
+                                <tr>
+                                    <th style="min-width: 100px;">Tài khoản</th>
+                                    <th style="min-width: 100px;">Họ và tên</th>
+                                    <th style="min-width: 100px;">Email</th>
+                                    <th style="min-width: 100px;">Ngày làm</th>
+                                    <th style="min-width: 100px;">Chức vụ</th>
+                                    <th style="min-width: 100px;">Tổng lương</th>
+                                    <th style="min-width: 100px;">Xếp loại</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tableNhanVienSearch">
+    
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    
+
 
     <!-- FONTAWESOME   -->
     <script src="https://kit.fontawesome.com/bd645d3e86.js" crossorigin="anonymous"></script>
