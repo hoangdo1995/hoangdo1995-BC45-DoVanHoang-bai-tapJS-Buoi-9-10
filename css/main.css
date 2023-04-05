@@ -169,12 +169,6 @@ body{
     margin-right: 20px;
 }
 
-/* //show MENU */
-#showMenu button{
-    /* display: none; */
-}
-
-
 /* content */
 .tab-content {
     
@@ -240,6 +234,12 @@ body{
     }
     .employee-details{
         width: 100% !important;
+    }
+    .tab-content {
+    
+        width: 100%;
+        background-image: none;
+        
     }
 }
 
