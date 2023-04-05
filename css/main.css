@@ -61,6 +61,10 @@
     color: hsla(178, 82, 77, 1);
 }
 
+.background-light{
+    background: #FFD1B8;
+}
+
 html {
     font-size: 17px;
 }
@@ -71,13 +75,10 @@ html {
     box-sizing: border-box;
 }
 
-body {
+body{
     /* font */
     font-family: 'Roboto', sans-serif;
-
-    max-width: 1200px;
-    margin: 20px auto;
-
+    margin: 20px;
 }
 
 /* global */
@@ -124,7 +125,7 @@ body {
     font-size: 1.2rem;
     margin-top: 10px;
     background-color: #FFD1B8;
-    border-radius: 20px;
+    border-radius: 10px;
 }
 
 .nav button {
@@ -154,8 +155,44 @@ body {
     min-height: 500px;
     margin-top: 10px;
     background-image: url(../image/Profiling-amico.png);
-    background-size: auto 80%;
+    background-size: auto 400px;
     background-repeat: no-repeat;
     background-position: bottom right;
+    padding: 30px 10px;
     
+}
+/* quản lý nhân viên page */
+
+
+/* nhập nhân viên page */
+.addEmployee form{
+    border: 2px solid #98F5F3;
+    border-radius: 10px;
+    padding: 20px;
+}
+.employee-box .employee-details{
+    width: 45%;
+}
+.employee-box .employee-detail{
+    margin-bottom: 20px;
+}
+.employee-box .employee-detail label{
+    display: block;
+    font-size: 1.2rem;
+    margin: 10px 0;
+    font-weight: 600;
+    color: #4DA8A6;
+}
+.employee-box .employee-detail .input{
+    width: 100%;
+    max-width: 500px;
+    font-size: 1.2rem;
+    border-radius: 10px;
+    border: 1px solid #98F5F3;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.61);
+}
+.employee-box .employee-detail .input:focus{
+    box-shadow: 0 0 20px 0px #98F5F3;
+    outline: none;
 }
