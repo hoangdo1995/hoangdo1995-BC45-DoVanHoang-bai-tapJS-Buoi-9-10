@@ -38,9 +38,9 @@
     </nav>
     <!-- SHOW MENU -->
     <div id="showMenu">
-        <button class="showMenuBtn btn btn-secondary my-2 p-2 fs-5" onclick="showMenu()">Menu</button>
+        <button class="showMenuBtn btn btn-secondary my-2 p-2 fs-5" onclick="showMenu(this)"><i class="fa fa-bars me-1"></i><i class="fa fa-plus me-1" style="display: none;"></i>Menu</button>
     </div>
-    <div class="d-flex align-items-start" id="body-content">
+    <div class="d-flex align-items-start justify-content-between" id="body-content" style="display: block;">
         <!-- Menu bar -->
         <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
             <button class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home"
@@ -55,7 +55,7 @@
                     viên</span></button>
             <button class="nav-link" id="v-pills-statistic-tab" data-bs-toggle="pill"
                 data-bs-target="#v-pills-statistic" type="button" role="tab" aria-controls="v-pills-statistic"
-                aria-selected="false" onclick="goToStatisticPage()"><i class="fa fa-clipboard"></i><span class="menu-title">Thống kê</span></button>
+                aria-selected="false" onclick="goToStatisticPage(this)"><i class="fa fa-clipboard"></i><span class="menu-title">Thống kê</span></button>
         </div>
         
         <!-- content -->
@@ -70,7 +70,9 @@
                         <h3>Chọn nghiệp vụ bạn muốn thực hiện</h3>
                         <button class="btnFunction" onclick="goToAddEmployeePage()">Thêm nhân viên mới</button>
                         <button class="btnFunction" onclick="goToManagerPage()">Chỉnh sửa nhân viên</button>
-                        <button class="btnFunction" onclick="goToStatisticPage()">Xem thống kê nhân viên</button>
+                        <button class="btnFunction" onclick="goToStatisticPage(this)">Xem thống kê nhân viên</button>
+
+                        <!-- Tìm kiếm nhân viên -->
                         <div class="d-flex justify-content-center my-3" role="search">
                             <div class="content-search w-50">
                                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
@@ -213,7 +215,7 @@
             <div class="tab-pane fade" id="v-pills-statistic" role="tabpanel" aria-labelledby="v-pills-statistic-tab"
                 tabindex="0">
                 <div class="statistic">
-                    <h3 class="fs-2 color-secondary text-uppercase text-center mb-4">Lọc ra nhân viên theo xếp loại và chức vụ:</h3>
+                    <h3 class="fs-2 color-secondary text-uppercase text-center mb-4">Lọc ra nhân viên theo xếp loại và chức vụ</h3>
                     <select name="positionSearch" id="positionSearch" class="fw-bold color-secondary rounded-2 p-2">
                         <option value="0">Chọn loại nhân viên</option>
                         <option value="1">Nhân viên</option>

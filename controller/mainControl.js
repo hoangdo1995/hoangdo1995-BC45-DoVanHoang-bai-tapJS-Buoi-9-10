@@ -23,7 +23,7 @@ document.querySelector('#btnAddNhanVien').onclick = function(event){
     var nv = getInputNhanVien();
 
     // validate dử liệu
-    var valid = (nullValidate(nv.account,'account')?accountValidate(nv.account,'account'):false)&(nullValidate(nv.name,'name')?nameValidate(nv.name,'name'):false)&(nullValidate(nv.email,'email')?emailValidate(nv.email,'email'):false)&(nullValidate(nv.password,'password')?passwordValidate(nv.password,'password'):false)&nullValidate(nv.workDay,'day-work')&(nullValidate(nv.salary,'base-salary')?baseSalaryValidate(nv.salary,'base-salary'):false)&nullValidate(positionIndexSelect,'position')&(nullValidate(nv.timesMonth,'times-month')?timesMonthValidate(nv.timesMonth,'times-month'):false);
+    var valid = (nullValidate(nv.account,'account')?(accountValidate(nv.account,'account')?repeatAccountValidate(nv.account,'account'):false):false)&(nullValidate(nv.name,'name')?nameValidate(nv.name,'name'):false)&(nullValidate(nv.email,'email')?emailValidate(nv.email,'email'):false)&(nullValidate(nv.password,'password')?passwordValidate(nv.password,'password'):false)&nullValidate(nv.workDay,'day-work')&(nullValidate(nv.salary,'base-salary')?baseSalaryValidate(nv.salary,'base-salary'):false)&nullValidate(positionIndexSelect,'position')&(nullValidate(nv.timesMonth,'times-month')?timesMonthValidate(nv.timesMonth,'times-month'):false);
 
     if(!valid){
         return;
@@ -303,10 +303,6 @@ function goToStatisticPage(event){
     var tabAdd = document.querySelector('#v-pills-statistic');
     tabAdd.classList.add('active');
     tabAdd.classList.add('show');
-
-    if(event.target.id === 'searchBtn'){
-        document.querySelector('#searchBox').focus();
-    }
     
 }
 
@@ -407,13 +403,32 @@ function searchNhanVienByName(name){
     renderNhanVienToUser(arrRessult,'#tableSearch');
 }
 
-function showMenu(){
+function repeatAccountValidate(account,name){
+    for (let i = 0; i < arrNhanVien.length; i++) {
+        if(arrNhanVien[i].account === account){
+            document.querySelector(`#error-repeat-${name}`).innerHTML = `${name} đã tồn tại`;
+            return false;
+        }
+    }
+    document.querySelector(`#error-repeat-${name}`).innerHTML = ``;
+    return true;
+}
+
+function showMenu(btn){
     var menu = document.querySelector('#v-pills-tab');
+    var menuIconShow = document.querySelector('.fa-bars');
+    var menuIconHide = document.querySelector('.fa-plus');
     if(menu.style.display !=='block'){
         menu.style.display = 'block';
+        menuIconShow.style.display = 'none';
+        menuIconHide.style.display = 'inline-block';
+        btn.style.background = '#F5B998';
     }
     else{
-        menu.style.display = 'none'
+        menu.style.display = 'none';
+        menuIconShow.style.display = 'inline-block';
+        menuIconHide.style.display = 'none';
+        btn.style.background = '#A87558';
     }
 }
 

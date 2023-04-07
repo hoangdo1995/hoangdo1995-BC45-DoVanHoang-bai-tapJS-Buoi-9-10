@@ -141,6 +141,17 @@ body{
     padding: 0;
 }
 
+/* Show menu */
+.showMenuBtn{
+    background-color: #A87558;
+    color: aliceblue;
+}
+
+.showMenuBtn:hover{
+    box-shadow: 0 0 10px 5px #98F5F3;
+    background-color: #F5B998;
+}
+
 /* menu bar */
 .nav {
     font-size: 1.2rem;
@@ -170,6 +181,10 @@ body{
 }
 
 /* content */
+
+#body-content{
+    max-width: 100%;
+}
 .tab-content {
     
     width: 100%;
