@@ -160,11 +160,18 @@ function renderNhanVienToUser(arr,target){
     document.querySelector(target).innerHTML = strRender;
 }
 
+
+/**
+ * Hàm xử lý lưu dư liệu vào storage của trình duyệt
+ */
 function saveStorage() {
     var sArrNhanVien = JSON.stringify(arrNhanVien); //Biến đổi arrSinhVien => chuổi
     localStorage.setItem('arrNhanVien', sArrNhanVien);
 }
 
+/**
+ * Hàm xử lý lấy dư liệu ra từ storage của trình duyệt
+ */
 function getDataStorage() {
     if (localStorage.getItem('arrNhanVien')) {
         var stringArrNhanVien = localStorage.getItem('arrNhanVien');
@@ -173,6 +180,10 @@ function getDataStorage() {
     }
 }
 
+/**
+ * hàm xóa nhân viên khỏi arrNhanViên dựa vào account của nhân viên
+ * @param {*} accountClick account của nhân viên cần xóa
+ */
 function xoaNhanVien(accountClick){
     let index = -1;
     for (let i = 0; i < arrNhanVien.length; i++) {
@@ -189,6 +200,11 @@ function xoaNhanVien(accountClick){
     }   
 }
 
+
+/**
+ * hàm xử hiển thị nội dung của trang chỉnh sưa nhân viên
+ * @param {*} accountClick 
+ */
 function suaNhanVien(accountClick){
     goToAddEmployeePage();
     document.querySelector('#btnAddNhanVien').disabled = true;
@@ -223,6 +239,10 @@ function suaNhanVien(accountClick){
     document.querySelector('#times-month').value = nvEdit.timesMonth;
 }
 
+
+/**
+ * hàm làm trống các trường nhập liệu trong bảng nhập nhân viên
+ */
 function clearInput(){
     document.querySelector('#account').value = '';
     document.querySelector('#name').value = '';
@@ -235,77 +255,11 @@ function clearInput(){
     document.querySelector('#times-month').value ='';
 }
 
-function goToAddEmployeePage(){
-    var listNavLink = document.querySelectorAll('.nav-link');
-    for (let i = 0; i < listNavLink.length; i++) {
-        listNavLink[i].classList.remove('active');
-    }
-    document.querySelector('#v-pills-add-employee-tab').classList.add('active');
-
-
-    var listTabPane = document.querySelectorAll('.tab-pane');
-    for (let i = 0; i < listTabPane.length; i++) {
-        listTabPane[i].classList.remove('active');
-        listTabPane[i].classList.remove('show');
-    }
-    var tabAdd = document.querySelector('#v-pills-add-employee');
-    tabAdd.classList.add('active');
-    tabAdd.classList.add('show');
-}
-
-function goToHome(){
-    var listNavLink = document.querySelectorAll('.nav-link');
-    for (let i = 0; i < listNavLink.length; i++) {
-        listNavLink[i].classList.remove('active');
-    }
-    document.querySelector('#v-pills-home-tab').classList.add('active');
-
-    var listTabPane = document.querySelectorAll('.tab-pane');
-    for (let i = 0; i < listTabPane.length; i++) {
-        listTabPane[i].classList.remove('active');
-        listTabPane[i].classList.remove('show');
-    }
-    var tabAdd = document.querySelector('#v-pills-home');
-    tabAdd.classList.add('active');
-    tabAdd.classList.add('show');
-}
-
-function goToManagerPage(){
-    var listNavLink = document.querySelectorAll('.nav-link');
-    for (let i = 0; i < listNavLink.length; i++) {
-        listNavLink[i].classList.remove('active');
-    }
-    document.querySelector('#v-pills-add-employee-tab').classList.add('active');
-
-    var listTabPane = document.querySelectorAll('.tab-pane');
-    for (let i = 0; i < listTabPane.length; i++) {
-        listTabPane[i].classList.remove('active');
-        listTabPane[i].classList.remove('show');
-    }
-    var tabAdd = document.querySelector('#v-pills-manager');
-    tabAdd.classList.add('active');
-    tabAdd.classList.add('show');
-}
-
-function goToStatisticPage(event){
-    var listNavLink = document.querySelectorAll('.nav-link');
-    for (let i = 0; i < listNavLink.length; i++) {
-        listNavLink[i].classList.remove('active');
-    }
-    document.querySelector('#v-pills-statistic-tab').classList.add('active');
-
-
-    var listTabPane = document.querySelectorAll('.tab-pane');
-    for (let i = 0; i < listTabPane.length; i++) {
-        listTabPane[i].classList.remove('active');
-        listTabPane[i].classList.remove('show');
-    }
-    var tabAdd = document.querySelector('#v-pills-statistic');
-    tabAdd.classList.add('active');
-    tabAdd.classList.add('show');
-    
-}
-
+/**
+ * hàm lấy về nhân viên dựa trên account
+ * @param {*} account 
+ * @returns đối tượng nhanVien được tim thấy hoặc trả về -1 nếu không tìm thấy kết quả nào
+ */
 function getNhanVienByAccount(account){
     getDataStorage();
     var nv = -1;
@@ -318,6 +272,11 @@ function getNhanVienByAccount(account){
     return nv;
 }
 
+/**
+ * hàm lấy về index của nhanVien dựa trên account
+ * @param {*} account 
+ * @returns tra về index của nhanVien cần tiềm hoặc trả về -1 nếu không tìm thấy
+ */
 function getIndexNhanVienByAccount(account){
     getDataStorage();
     var index = -1;
@@ -330,12 +289,21 @@ function getIndexNhanVienByAccount(account){
     return index;
 }
 
+/**
+ * tạo đối tượng nhanVien dựa trên đối tương trả về từ JSON
+ * @param {*} nv đối tường được parse từ JSON
+ * @returns đới tượng kiểu nhanVien
+ */
 function assignNhanVien(nv){
     var target = new nhanVien();
     target = Object.assign(target,nv);
     return target;
 }
 
+/**
+ * lấy đối tượng trả về từ form nhập liệu
+ * @returns Object nhanVien
+ */
 function getInputNhanVien(){
     var nv = new nhanVien();
     nv.account = document.querySelector('#account').value.trim();
@@ -357,6 +325,12 @@ function getInputNhanVien(){
     return nv;
 }
 
+/**
+ * tìm đối tượng dựa vào chucVu trên mảng nhanVien arr
+ * @param {*} arr 
+ * @param {*} position 
+ * @returns các đối tưởng có chucVu position trong mảng arr
+ */
 function getEmployeesByPosition(arr,position){
     var arrPosition = [];
     for (let i = 0; i < arr.length; i++) {
@@ -369,6 +343,13 @@ function getEmployeesByPosition(arr,position){
     return arrPosition;
 }
 
+
+/**
+ * tìm đối tượng dựa vào xepLoai trên mảng nhanVien arr
+ * @param {*} arr 
+ * @param {*} rank 
+ * @returns các đối tưởng có xepLoai position trong mảng arr
+ */
 function getEmployeesByRank(arr,rank){
     var arrRank = [];
     for (let i = 0; i < arr.length; i++) {
@@ -381,6 +362,11 @@ function getEmployeesByRank(arr,rank){
     return arrRank;
 }
 
+
+/**
+ * tiềm kiếm các nhanVien dựa trên nhanVien.name đã được chuyển đổi sang kiểu ko dấu alias
+ * @param {*} name mảng các nhanVien tương ứng với dử liệu tìm kiếm
+ */
 function searchNhanVienByName(name){
     event.preventDefault();
     getDataStorage();
@@ -403,6 +389,13 @@ function searchNhanVienByName(name){
     renderNhanVienToUser(arrRessult,'#tableSearch');
 }
 
+
+/**
+ * hàm kiềm tra xác thực dử liệu cho trường account ko trùng lặp với các account đang hiện có
+ * @param {*} account 
+ * @param {*} name 
+ * @returns trả về true nếu không có account nào trùng lặp, trả về false nếu có account trùng lặp
+ */
 function repeatAccountValidate(account,name){
     for (let i = 0; i < arrNhanVien.length; i++) {
         if(arrNhanVien[i].account === account){
@@ -414,6 +407,10 @@ function repeatAccountValidate(account,name){
     return true;
 }
 
+/**
+ * xử lý sự kiên cho nut btnShowMenu
+ * @param {*} btn 
+ */
 function showMenu(btn){
     var menu = document.querySelector('#v-pills-tab');
     var menuIconShow = document.querySelector('.fa-bars');

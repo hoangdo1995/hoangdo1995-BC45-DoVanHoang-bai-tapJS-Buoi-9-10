@@ -153,6 +153,9 @@ body{
 }
 
 /* menu bar */
+#v-pills-tab{
+    display: block;
+}
 .nav {
     font-size: 1.2rem;
     margin-top: 10px;
@@ -183,10 +186,10 @@ body{
 /* content */
 
 #body-content{
-    max-width: 100%;
+    width: 100%;
 }
 .tab-content {
-    
+    min-width: 70%;
     width: 100%;
     background-color:#f5b9983b;
     min-height: 500px;
@@ -251,17 +254,11 @@ body{
         width: 100% !important;
     }
     .tab-content {
-    
-        width: 100%;
         background-image: none;
-        
     }
 }
 
 @media screen and (max-width: 600px) {
-    body{
-        
-    }
     #v-pills-tab{
         display: none;
     }
@@ -276,9 +273,6 @@ body{
         display: block;
     }
     .tab-content {
-    
-        width: 100%;
         background-image: none;
-        
     }
 }

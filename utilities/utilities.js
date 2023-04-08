@@ -1,3 +1,9 @@
+/**
+ * hàm kiểm tra trung lấp dử liệu dựa trên gia trị và thiết lập cảnh báo ra trình duyệt qua đối tượng có id = `#error-require-${name}`
+ * @param {*} value 
+ * @param {*} name 
+ * @returns true nếu dử liệu không trống, false nêu dử liệu nhập vào rổng
+ */
 function nullValidate(value, name){
     if(value === '' || value === 0){
         document.querySelector(`#error-require-${name}`).innerHTML = `${name} không được để trông!`;
@@ -9,6 +15,12 @@ function nullValidate(value, name){
     }
 }
 
+/**
+ * kiểm tra tính hợp lệ của trường account
+ * @param {*} value 
+ * @param {*} name 
+ * @returns 
+ */
 function accountValidate(value,name){
     var accountRegex = /[0-9]{4,6}/g;
     if(!accountRegex.test(value)){
@@ -21,6 +33,12 @@ function accountValidate(value,name){
     }
 }
 
+/**
+ * kiểm tra tính hợp lệ của trường email
+ * @param {*} value 
+ * @param {*} name 
+ * @returns 
+ */
 function emailValidate(value, name){
     var emailRegex = /(?:[a-z0-9+!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/i;
     if(!emailRegex.test(value)){
@@ -33,6 +51,12 @@ function emailValidate(value, name){
     }
 }
 
+/**
+ * kiểm tra tính hợp lệ của trường name
+ * @param {*} value 
+ * @param {*} name 
+ * @returns 
+ */
 function nameValidate(value, name){
 
     var nameRegex = /[a-zỳọáầảấờễàạằệếýộậốũứĩõúữịỗìềểẩớặòùồợãụủíỹắẫựỉỏừỷởóéửỵẳẹèẽổẵẻỡơôưăêâđ']$/g;
@@ -46,6 +70,12 @@ function nameValidate(value, name){
     }
 }
 
+/**
+ * kiểm tra tính hợp lệ của trường passoword
+ * @param {*} value 
+ * @param {*} name 
+ * @returns 
+ */
 function passwordValidate(value, name){
     var passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,10}$/;
     if(!passwordRegex.test(value)){
@@ -58,6 +88,12 @@ function passwordValidate(value, name){
     }
 }
 
+/**
+ * kiểm tra tính hợp lệ của trường lương cơ bản
+ * @param {*} value 
+ * @param {*} name 
+ * @returns 
+ */
 function baseSalaryValidate(value,name){
     if(!(value >= 1000000 && value <= 20000000)){
         document.querySelector(`#error-valid-${name}`).innerHTML = `Lương cơ bản 1 000 000 - 20 000 000`;
@@ -69,6 +105,12 @@ function baseSalaryValidate(value,name){
     }
 }
 
+/**
+ * kiêm tra tính hợp lệ của trường thời gian làm việc tháng
+ * @param {*} value 
+ * @param {*} name 
+ * @returns 
+ */
 function timesMonthValidate(value,name){
     if(!(value >= 80 && value <= 200)){
         document.querySelector(`#error-valid-${name}`).innerHTML = `Số giờ làm trong tháng 80 - 200 giờ`;
@@ -80,11 +122,11 @@ function timesMonthValidate(value,name){
     }
 }
 
-function dayWorkValidate(value,name){
-    
-}
-
-
+/**
+ * hàm chuyển chuổi về sạng không dấu
+ * @param {*} title 
+ * @returns 
+ */
 function ChangeToSlug(title) { 
     //Đổi chữ hoa thành chữ thường
     slug = title.toLowerCase();
